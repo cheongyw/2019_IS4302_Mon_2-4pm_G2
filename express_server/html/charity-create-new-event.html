@@ -1,0 +1,278 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blockchain</title>
+    <!--
+
+    Template 2108 Dashboard
+
+	http://www.tooplate.com/view/2108-dashboard
+
+    -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+    <!-- https://fonts.google.com/specimen/Open+Sans -->
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="jquery-ui-datepicker/jquery-ui.min.css" type="text/css" />
+    <!-- http://api.jqueryui.com/datepicker/ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="css/tooplate.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+    <script type="text/javascript">
+
+    // populate beneficiaries object
+    let beneficiaries = {};
+      $.ajax({
+        // extracts data from url below which links to the Beneficiary participants
+        url: "/hlf3/api/org.hyperledger_composer.project.Beneficiary"
+      }).done(function(data) {
+          //console.log(data);
+          $.each(data, function (i, item) {
+            $('#beneficiary').append('<option value=' + item.id + '>' + item.description + '</option>');
+          }); 
+        });
+
+    </script>
+</head>
+
+<body id="reportsPage" class="bg02">
+    <div class="" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-xl navbar-light bg-light">
+                        <a class="navbar-brand">
+                            <h1 class="tm-site-title mb-0">Charity</h1>
+                        </a>
+                        <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-auto">
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="charity-fund-event-listings.html">Fund Event Listings</a>
+                                </li>
+
+                                <li class="nav-item active">
+                                <a class="nav-link" href="charity-fund-event-requests.html">Fund Event Requests</a>
+                            </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="charity-pending-donations.html">Pending Donations</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="charity-transfer-funds.html">Transfers</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="charity-profile.html">My Profile</a>
+                                </li>
+
+                            </ul>
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex" href="login.html">
+                                        <i class="far fa-user mr-2 tm-logout-icon"></i>
+                                        <span>Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- row -->
+            <!-- row -->
+            <div class="row tm-mt-big">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class="bg-white tm-block">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="tm-block-title d-inline-block">Create New Fund Event</h2>
+                            </div>
+                        </div>
+                        <div class="row mt-4 tm-edit-product-row">
+                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                    <!--Javascript script below shows how the relevants details from the form will be parsed into the CreateFundEvent transaction-->
+                                    <div class="input-group mb-3">
+                                        <label for="request_id" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Request ID
+                                        </label>
+                                        <input id="request_id" name="request_id" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" readonly>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="event_id" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Event ID
+                                        </label>
+                                        <input id="event_id" name="event_id" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" readonly>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="beneficiary" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Beneficiary
+                                        </label>
+                                        <input id="beneficiary" name="beneficiary" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" readonly>
+                                        </input>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="description" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Description
+                                        </label>
+                                        <input id="description" name="description" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" readonly>
+                                        </input>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="target_amount" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Target Amount
+                                        </label>
+                                        <input id="target_amount" name="target_amount" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" readonly>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label for="deadline" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Deadline
+                                        </label>
+                                        <input id="deadline" name="deadline" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" readonly>
+                                    </div>
+                                    
+                                    <div class="input-group mb-3">
+                                        <div class="ml-auto col-xl-8 col-lg-8 col-md-8 col-sm-7 pl-0">
+                                            <button type="submit" class="btn btn-primary" id="approveEventButton">Approve Fund Event</button>
+                                            <button type="submit" class="btn btn-primary" id="denyEventButton">Deny Fund Event</button>
+                                        </div>
+                                    </div>
+                                <!-- </form> -->   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+
+    <script type="text/javascript">
+        function getUrlParams() {
+
+          var query = window.location.href.split('?')[1];
+          // extracts the relevant details from the url
+          // we'll store the parameters here
+          var requestId = query.split('requestId=')[1].split('&')[0];
+          var eventId = query.split('eventId=')[1].split('&')[0];
+          var targetAmount = query.split('targetAmount=')[1].split('&')[0];
+          var deadline = query.split('deadline=')[1].split('&')[0];
+          var description = query.split('description=')[1].split('&')[0];
+          var beneficiary = query.split('beneficiary=')[1].split('&')[0];
+
+          var result = [eventId, beneficiary, description, targetAmount, deadline, requestId];
+          return result;
+        }
+
+        var result = getUrlParams();
+        // use these parameters gotten to show in the readonly html form above
+        document.getElementById('event_id').setAttribute('value', result[0]);
+        document.getElementById('beneficiary').setAttribute('value', result[1]);
+        document.getElementById('description').setAttribute('value', result[2]);
+        document.getElementById('target_amount').setAttribute('value', result[3]);
+        document.getElementById('deadline').setAttribute('value', result[4]);
+        document.getElementById('request_id').setAttribute('value', result[5]);
+
+    </script>
+
+    <script type="text/javascript">
+
+      // executed when the Approve Fund Event Event button is clicked
+      function approveEvent() {
+
+        // submit these params gotten into the hyperledger_composer ApproveFundEventRequest transaction
+        // the transaction in the hyperledger composer will create a FundEvent asset with the information keyed in the form above
+        var requestId = document.getElementById('request_id').value;
+
+        var params = {
+          type: "POST",
+          data: {
+            request: requestId
+          },
+          success: function(result) {
+            alert('New fund event created!');
+            // refreshes the page 
+            setTimeout(
+                function()
+                {
+                   window.location.href="charity-fund-event-listings.html";
+                }, 0001);
+          },
+          error: function(result) {
+            alert("Unable to create new fund event");
+          }
+        }
+        // POST to the charity's rest server
+        params.url = "/hlf3/api/org.hyperledger_composer.project.ApproveFundEventRequest";
+        $.ajax(params);
+      };
+
+      // executed when the Deny Fund Event button is clicked
+      function denyEvent() {
+
+        // submit these params gotten into the hyperledger_composer DenyFundEventRequest transaction
+        var requestId = document.getElementById('request_id').value;
+        
+        var params = {
+          type: "POST",
+          data: {
+            request: requestId
+          },
+          success: function(result) {
+            alert('Fund event request has been rejected!');
+            // refreshes the page 
+            setTimeout(
+                function()
+                {
+                   window.location.href="charity-fund-event-listings.html";
+                }, 0001);
+          },
+          error: function(result) {
+            alert("Unable to reject fund event request");
+          }
+        }
+        // POST to the charity's rest server
+        params.url = "/hlf3/api/org.hyperledger_composer.project.DenyFundEventRequest";
+        $.ajax(params);
+      };
+
+  </script>
+
+    <!-- https://jquery.com/download/ -->
+    <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
+    <!-- https://jqueryui.com/download/ -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+    <script>
+        $(function () {
+            $('.tm-product-name').on('click', function () {
+                window.location.href = "charity-update-fund-event-listings.html";
+            });
+        })
+    </script>
+    <script>
+        $(function () {
+            $('#deadline').datepicker();
+        });
+
+        // createEventButton jQuery
+        $( "#approveEventButton" ).click(function() {
+            approveEvent();
+        });
+
+        // createEventButton jQuery
+        $( "#denyEventButton" ).click(function() {
+            denyEvent();
+        });
+    </script>
+</body>
+
+</html>

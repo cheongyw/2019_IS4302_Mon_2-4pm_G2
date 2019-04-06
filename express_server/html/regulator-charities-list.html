@@ -1,0 +1,162 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blockchain</title>
+    <!--
+
+    Template 2108 Dashboard
+
+	http://www.tooplate.com/view/2108-dashboard
+
+    -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+    <!-- https://fonts.google.com/specimen/Open+Sans -->
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="css/tooplate.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript">
+
+    // populate charity requests table
+    let charityRequest = {};
+    $.ajax({
+    url: "/hlf2/api/org.hyperledger_composer.project.CharityRequest"
+    }).done(function(data) {
+      //console.log(data);
+      data.forEach(function(p){
+        // charityRequest[p.requestId] = p.requestId;
+        charityRequest[p.description] = p.description;
+        charityRequest[p.requestDate] = p.requestDate;
+        // charityRequest[p.description] = p.description;
+        charityRequest[p.status] = p.status;
+      });
+    });
+
+    // create charityRequest table
+    $(document).ready(() => {
+        $('#charityRequest-table').DataTable( {
+          "ajax": {
+            url: "/hlf2/api/org.hyperledger_composer.project.CharityRequest",
+            dataSrc: ""
+          },
+          columns: [
+            { title:"Charity Name", data: "description" }, 
+            {
+                title: "Click to",
+                "render": function ( data, type, full, meta ) {
+                    let htmlOutput = "<a href=\"regulator-charity-profile.html?charityId=" + full.charity + "&description=" + full.description + "&status=" + full.status + "\">View</a>";
+                    $('#container').html(htmlOutput);
+                    return htmlOutput;
+
+                }
+
+            }
+        
+          ],
+          "rowCallback": function(nRow, aData, iDisplayIndex) {
+            if (aData.status != 'APPROVED') {
+                $(nRow.hide());
+            }
+            return nRow;
+          }
+        });
+    });
+
+    </script>
+
+</head>
+
+<body id="reportsPage" class="bg02">
+    <div class="" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-xl navbar-light bg-light">
+                        <a class="navbar-brand">
+                            <h1 class="tm-site-title mb-0">Regulator</h1>
+                        </a>
+                        <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="regulator-requests.html">Pending Requests</a>
+                                </li>
+
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="regulator-charities-list.html">List of Certified Charities
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="regulator-beneficiaries-list.html">List of Certified Beneficiaries</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="regulator-profile.html">My Profile</a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex" href="login.html">
+                                        <i class="far fa-user mr-2 tm-logout-icon"></i>
+                                        <span>Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- row -->
+            <div class="row tm-content-row tm-mt-big">
+                <div class="col-xl-12 col-lg-12 tm-md-12 tm-sm-12 tm-col">
+                    <div class="bg-white tm-block h-100">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-12">
+                                <h2 class="tm-block-title d-inline-block">List of Certified Charities</h2>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table id = "charityRequest-table" class="table table-striped tm-table-striped-even mt-3">
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="js/bootstrap.min.js"></script>
+    </script>
+    </script>
+    <!--datatables-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js">
+    </script>
+    <!--bootstrap-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.3/js/bootstrap-select.js"></script>
+
+    <script>
+        $(function () {
+            $('.tm-charity-name').on('click', function () {
+                window.location.href = "regulator-charity-profile.html";
+            });
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blockchain</title>
+    <!--
+
+    Template 2108 Dashboard
+
+	http://www.tooplate.com/view/2108-dashboard
+
+    -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+    <!-- https://fonts.google.com/specimen/Open+Sans -->
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="jquery-ui-datepicker/jquery-ui.min.css" type="text/css" />
+    <!-- http://api.jqueryui.com/datepicker/ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="css/tooplate.css">
+</head>
+
+<body class="bg02">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-xl navbar-light bg-light">
+                    <a class="navbar-brand">
+                        <h1 class="tm-site-title mb-0">Charity</h1>
+                    </a>
+                    <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!--Navigation Panel-->
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mx-auto">
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="charity-fund-event-listings.html">Fund Event Listings</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="charity-fund-event-requests.html">Fund Event Requests</a>
+                            </li>
+
+                            <li class="nav-item active">
+                                <a class="nav-link" href="charity-pending-donations.html">Pending Donations</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="charity-transfer-funds.html">Transfers</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="charity-profile.html">My Profile</a>
+                            </li>
+
+                        </ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex" href="login.html">
+                                    <i class="far fa-user mr-2 tm-logout-icon"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row tm-mt-big">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="bg-white tm-block">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="tm-block-title d-inline-block">Confirm Donation</h2>
+                        </div>
+                    </div>
+                    <div class="row mt-4 tm-edit-product-row">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
+                                <!--Javascript script below shows how the relevants details will be reflected in this form-->
+                                <div class="input-group mb-3">
+                                    <label for="event_id" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Event ID
+                                    </label>
+                                    <input value="" id="event_id" name="event_id" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" readonly>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="donor" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Donor
+                                    </label>
+                                    <input value="" id="donor" name="donor" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" readonly>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="reference_code" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Reference Code
+                                    </label>
+                                    <input value="" id="reference_code" name="reference_code" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" readonly>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <label for="amount" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Amount (SGD)
+                                    </label>
+                                    <input value="" id="amount" name="amount" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" readonly>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <label for="status" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Status
+                                    </label>
+                                    <input value="" id="status" name="status" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" readonly>
+                                </div>
+                                
+                                <div class="input-group mb-3">
+                                    <div class="ml-auto col-xl-8 col-lg-8 col-md-8 col-sm-7 pl-0">
+                                        <button type="submit" class="btn btn-primary" id="confirmDonationButton">Confirm Donation
+                                        </button>
+                                        <button type="submit" class="btn btn-primary" id="rejectDonationButton">Reject Donation
+                                        </button>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <!--Function to show the fundraising event id, reference code and transfer amount-->
+    <script type="text/javascript">
+        function getUrlParams() {
+
+          var query = window.location.href.split('?')[1];
+
+          // extracts the relevant details (fundraising event id, donor, reference code, amount, status) from the url
+          // we'll store the parameters here
+          var eventId = query.split('eventId=')[1].split('&')[0];
+          var donor = query.split('donor=')[1].split('&')[0];
+          var reference_code = query.split('referenceCode=')[1].split('&')[0];
+          var amount = query.split('amount=')[1].split('&')[0];
+          var status = query.split('status=')[1].split('&')[0];
+          
+          var result = [eventId, donor, reference_code, amount, status];
+          return result;
+        }
+
+        // get the event id, donor, reference code, amount, status using the function above
+        var result = getUrlParams();
+        // use these parameters gotten to show in the readonly html form above
+        document.getElementById('event_id').setAttribute('value', result[0]);
+        document.getElementById('donor').setAttribute('value', result[1]);
+        document.getElementById('reference_code').setAttribute('value', result[2]);
+        document.getElementById('amount').setAttribute('value', result[3]);
+        document.getElementById('status').setAttribute('value', result[4]);
+
+        $( "#confirmDonationButton" ).click(function() {
+            confirm();
+        });
+
+        $( "#rejectDonationButton" ).click(function() {
+            reject();
+        });
+    </script>
+
+    <script type="text/javascript">
+
+      // executed when the confirm donation button is clicked
+      // function to confirm donation of funds from donor to charity
+      function confirm() {
+        var referenceCode = document.getElementById('reference_code').value;
+        // submit these params gotten into the hyperledger_composer ConfirmDonation transaction
+        // the transaction in the hyperledger composer will change the status of the Donation from 'PENDING' to 'RECEIVED'
+        // the respective amounts also change according to the script for ConfirmDonation in the hyperledger fabric composer
+        var params = {
+          type: "POST",
+          data: {
+            donation: referenceCode
+          },
+          success: function(result) {
+            alert('Donation confirmed!');
+            // refreshes the page and brings charity back to the fundraising event listing page
+            setTimeout(
+                function()
+                {
+                   window.location.href="charity-fund-event-listings.html";
+                }, 001);
+          },
+          error: function(result) {
+            alert('Unable to confirm donation');
+          }
+        }
+        params.url = "/hlf3/api/org.hyperledger_composer.project.ConfirmDonation";
+        $.ajax(params);
+      };
+
+      // executed when the reject donation button is clicked
+      // function to reject donation of funds from donor to charity
+      function reject() {
+        var referenceCode = document.getElementById('reference_code').value;
+        // submit these params gotten into the hyperledger_composer RejectDonation transaction
+        // the transaction in the hyperledger composer will change the status of the Donation from 'PENDING' to 'REJECTED'
+        // the respective amounts also change according to the script for RejectDonation in the hyperledger fabric composer
+        var params = {
+          type: "POST",
+          data: {
+            donation: referenceCode
+          },
+          success: function(result) {
+            alert('Donation rejected!');
+            // refreshes the page and brings charity back to the fundraising event listing page
+            setTimeout(
+                function()
+                {
+                   window.location.href="charity-fund-event-listings.html";
+                }, 001);
+          },
+          error: function(result) {
+            alert('Unable to reject donation');
+          }
+        }
+        params.url = "/hlf3/api/org.hyperledger_composer.project.RejectDonation";
+        $.ajax(params);
+      };
+
+  </script>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
+    <!-- https://jqueryui.com/download/ -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

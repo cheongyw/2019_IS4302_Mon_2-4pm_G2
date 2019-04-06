@@ -1,0 +1,161 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blockchain</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+    <!-- https://fonts.google.com/specimen/Open+Sans -->
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="css/tooplate.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript">
+
+    // table shows pending receipt of funds
+    // i.e. charities have transferred the fundraising event's funds to beneficiaries [creates Transfer asset]
+    // these transactions [Transfer assets with status 'PENDING'] that are awaiting beneficiaries' confirmation would be shown in this table
+
+    // create table consisting of Transfer assets with status 'PENDING'
+    $(document).ready(() => {
+
+        //need to change proxy
+        $('#pending-transfers').DataTable( {
+          "ajax": {
+            // extracts data from url below which links to the Transfer assets
+            url: "/hlf4/api/org.hyperledger_composer.project.Transfer",
+            dataSrc: ""
+          },
+          // data table's columns
+          columns: [
+            // column title is the Title to be shown in the table in the UI
+            // data is the name of the data that you are extracting from the transfer asset. must state the exact name
+
+            // extracts the fundraising event's ID
+            { title:"Event ID", render: function(data, type, row, meta) {
+                let eventIDHtmlOutput = row.fundEvent.split("#")[1];
+                return eventIDHtmlOutput;
+            }},
+            { title:"Reference Code", data: "referenceCode" },
+            { title:"Amount (SGD)", data: "amount" },
+            { title:"Status", data: "status" },
+            // creates a hyperlink for each row that links to the page to confirm charity's fund transfer for each event ID
+            // by integrating id, reference code and amount in the url, we would be able to reflect the
+            // id, reference code and amount in an uneditable form on the next page as well
+            // allowing for confirmation of transfer for the correct event id
+            { title:"", render: function(data, type, row, meta){
+
+            let htmlOutput = "<a href=\"beneficiary-confirm-transfer.html?eventId=" + row.fundEvent + "&referenceCode=" + row.referenceCode + "&amount=" + row.amount + "&status=" + row.status + "\">View</a>";
+          $('#container').html(htmlOutput);
+          return htmlOutput;   }
+        } 
+
+          ],
+          // we only want to show rows that are of 'PENDING' status for the beneficiaries to confirm/reject
+          // hides row that are not of status 'PENDING' i.e. they are have been confirmed of rejected
+          "rowCallback": function(nRow, aData, iDisplayIndex) {
+            if (aData.status != 'PENDING') {
+                $(nRow).hide();
+                // console.log(aData);
+            }
+            return nRow;
+          }
+        });
+    });
+
+    </script>
+</head>
+
+<body id="reportsPage" class="bg02">
+    <div class="" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-xl navbar-light bg-light">
+                        <a class="navbar-brand">
+                            <h1 class="tm-site-title mb-0">Beneficiary</h1> 
+                        </a>
+                        <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <!--Navigation Panel-->
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-auto">
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="beneficiary-fund-event-listings.html">Fund Event Listings</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="beneficiary-request-fund-event.html">Request Fund Event</a>
+                                </li>
+
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="beneficiary-pending-transfer.html">Pending Receipt of Funds</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="beneficiary-profile.html">My Profile</a>
+                                </li>
+
+                            </ul>
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex" href="login.html">
+                                        <i class="far fa-user mr-2 tm-logout-icon"></i>
+                                        <span>Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- row -->
+            <div class="row tm-content-row tm-mt-big">
+                <div class="col-xl-12 col-lg-12 tm-md-12 tm-sm-12 tm-col">
+                    <div class="bg-white tm-block h-100">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-12">
+                                <h2 class="tm-block-title d-inline-block">Pending Receipt of Funds</h2>
+                            </div>
+                        </div>
+                        <!--Links to the datatable-->
+                        <div class="table-responsive">
+                            <table id="pending-transfers" class="table table-striped tm-table-striped-even mt-3">
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--datatables-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    <!-- https://jquery.com/download/ -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+
+    <!--Is this now unnecessary?-->
+    <script>
+        $(function () {
+            $('.tm-product-name').on('click', function () {
+                window.location.href = "beneficiary-confirm-transfer.html";
+            });
+        })
+    </script>
+    <!--Is this now unnecessary?-->
+</body>
+
+</html>

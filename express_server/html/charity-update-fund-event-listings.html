@@ -1,0 +1,297 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blockchain</title>
+    <!--
+
+    Template 2108 Dashboard
+
+	http://www.tooplate.com/view/2108-dashboard
+
+    -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+    <!-- https://fonts.google.com/specimen/Open+Sans -->
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="jquery-ui-datepicker/jquery-ui.min.css" type="text/css" />
+    <!-- http://api.jqueryui.com/datepicker/ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="css/tooplate.css">
+</head>
+
+<body class="bg02">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-xl navbar-light bg-light">
+                    <a class="navbar-brand">
+                        <h1 class="tm-site-title mb-0">Charity</h1>
+                    </a>
+                    <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mx-auto">
+
+                            <li class="nav-item active">
+                                <a class="nav-link" href="charity-fund-event-listings.html">Fund Event Listings</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="charity-fund-event-requests.html">Fund Event Requests</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="charity-pending-donations.html">Pending Donations</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="charity-transfer-funds.html">Transfers</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="charity-profile.html">My Profile</a>
+                            </li>
+
+                        </ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex" href="login.html">
+                                    <i class="far fa-user mr-2 tm-logout-icon"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row tm-mt-big">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="bg-white tm-block">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="tm-block-title d-inline-block">Update Fund Event</h2>
+                        </div>
+                    </div>
+                    <div class="row mt-4 tm-edit-product-row">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
+                            <!--Javascript script below shows how the relevants details will be reflected in this form-->
+                                <div class="input-group mb-3">
+                                    <label for="event_id" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Event ID
+                                    </label>
+                                    <input value="" id="event_id" name="event_id" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" readonly>
+                                </div>
+                                <!--Javascript script below shows how the relevants details from the form will be parsed into the UpdateTargetAmount transaction-->
+                                <div class="input-group mb-3">
+                                    <label for="target_amount" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Target Amount (SGD)
+                                    </label>
+                                    <input value="" id="target_amount" name="target_amount" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7">
+                                </div>
+                                <!--Javascript script below shows how the relevants details from the form will be parsed into the UpdateStatus transaction-->
+                                <div class="ml-auto col-xl-8 col-lg-8 col-md-8 col-sm-7 pl-0">
+                                        <button type="submit" class="btn btn-primary" id="updateTargetAmountButton">Update
+                                        </button>
+                                    </div>
+                                    <br>
+                                <!--Javascript script below shows how the relevants details from the form will be parsed into the UpdateDeadline transaction-->
+                                <div class="input-group mb-3">
+                                    <label for="deadline" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Deadline (MM/DD/YYYY)
+                                    </label>
+                                    <input value="" id="deadline" name="deadline" type="text" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                        data-large-mode="true">
+                                </div>
+                                <div class="ml-auto col-xl-8 col-lg-8 col-md-8 col-sm-7 pl-0">
+                                        <button type="submit" class="btn btn-primary" id="updateDeadlineButton">Update
+                                        </button>
+                                    </div>
+                                    <br>
+                                <div class="input-group mb-3">
+                                    <label for="status" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Status</label>
+                                    <select class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7" id="status">
+                                        <option value="OPEN" selected>OPEN</option>
+                                        <option value="CLOSED">CLOSED</option>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="ml-auto col-xl-8 col-lg-8 col-md-8 col-sm-7 pl-0">
+                                        <button type="submit" class="btn btn-primary" id="updateStatusButton">Update
+                                        </button>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    
+    <!--Function to show the fundraising event id, target amount, deadline and status-->
+    <script type="text/javascript">
+
+        function getUrlParams() {
+
+          var query = window.location.href.split('?')[1];
+
+          // extracts the relevant details (fundraising event id, target amount, deadline and status) from the url
+          // we'll store the parameters here
+          var eventId = query.split('eventId=')[1].split('&')[0];
+          var targetAmount = query.split('targetAmount=')[1].split('&')[0];
+          var deadline = query.split('deadline=')[1].split('&')[0];
+          var status = query.split('status=')[1].split('&')[0];
+          
+          var result = [eventId, targetAmount, deadline, status];
+          return result;
+        }
+
+        // get the event id, target amount, deadline and status using the function above
+        var result = getUrlParams();
+        // use these parameters gotten to show in the html form above (event id is readonly)
+        document.getElementById('event_id').setAttribute('value', result[0]);
+        document.getElementById('target_amount').setAttribute('value', result[1]);
+        document.getElementById('deadline').setAttribute('value', result[2]);
+        document.getElementById('status').setAttribute('value', result[3]);
+
+        $( "#updateTargetAmountButton" ).click(function() {
+            updateTargetAmount();
+        });
+
+        $( "#updateDeadlineButton" ).click(function() {
+            updateDeadline();
+        });
+
+        $( "#updateStatusButton" ).click(function() {
+            updateStatus();
+        });
+
+    </script>
+
+    <script type="text/javascript">
+
+      // executed when the Update is clicked
+      // function to update the target amount (called by button onclick())
+      function updateTargetAmount() {
+        var eventId = document.getElementById('event_id').value;
+        var targetAmount = document.getElementById('target_amount').value;
+
+        // submit these params gotten into the hyperledger_composer UpdateTargetAmount transaction
+        // the transaction in the hyperledger composer will modify the FundEvent asset's Target Amount with the information keyed in the form above
+
+        var params = {
+          type: "POST",
+          data: {
+            fundEvent: eventId,
+            newTarget: targetAmount
+          },
+          success: function(result) {
+            alert('Update successful!');
+            // refreshes the page and brings charity back to the page where all fund events they hosted are listed
+            setTimeout(
+                function()
+                {
+                   window.location.href="charity-fund-event-listings.html";
+                }, 0001);
+          },
+          error: function(result) {
+            alert('Update failed');
+          }
+        }
+        // POST to the charity's rest server
+        params.url = "/hlf3/api/org.hyperledger_composer.project.UpdateTargetAmount";
+        $.ajax(params);
+      };
+
+      // executed when the Update is clicked
+      // function to update the deadline (called by button onclick())
+      function updateDeadline() {
+        var eventId = document.getElementById('event_id').value;
+        var deadline = document.getElementById('deadline').value;
+
+        // submit these params gotten into the hyperledger_composer UpdateDeadline transaction
+        // the transaction in the hyperledger composer will modify the FundEvent asset's Deadline with the information keyed in the form above
+
+        var params = {
+          type: "POST",
+          data: {
+            fundEvent: eventId,
+            newDeadline: deadline
+          },
+          success: function(result) {
+            alert('Update successful!');
+            // refreshes the page and brings charity back to the page where all fund events they hosted are listed
+            
+            setTimeout(
+                function()
+                {
+                   window.location.href="charity-fund-event-listings.html";
+                }, 0001);
+          },
+          error: function(result) {
+            alert('Update failed');
+          }
+        }
+        // POST to the charity's rest server
+        params.url = "/hlf3/api/org.hyperledger_composer.project.UpdateDeadline";
+        $.ajax(params);
+      };
+
+      // executed when the Update is clicked
+      // function to update the status (called by button onclick())
+      function updateStatus() {
+        var eventId = document.getElementById('event_id').value;
+        var status = document.getElementById('status');
+        var curr = status[status.selectedIndex].value;
+
+        // submit these params gotten into the hyperledger_composer UpdateStatus transaction
+        // the transaction in the hyperledger composer will modify the FundEvent asset's Status with the information keyed in the form above
+
+        var params = {
+          type: "POST",
+          data: {
+            fundEvent: eventId,
+            newStatus: curr
+          },
+          success: function(result) {
+            alert('Update successful!');
+            // refreshes the page and brings charity back to the page where all fund events they hosted are listed
+            setTimeout(
+                function()
+                {
+                   window.location.href="charity-fund-event-listings.html";
+                }, 0001);
+          },
+          error: function(result) {
+            alert(result);
+          }
+        }
+        // POST to the charity's rest server
+        params.url = "/hlf3/api/org.hyperledger_composer.project.UpdateEventStatus";
+        $.ajax(params);
+      };
+
+  </script>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
+    <!-- https://jqueryui.com/download/ -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+    <script>
+        $(function () {
+            $('#deadline').datepicker();
+        });
+    </script>
+</body>
+
+</html>
